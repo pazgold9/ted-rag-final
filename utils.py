@@ -32,7 +32,23 @@ def get_openai_client():
 def get_pinecone_index():
     """מחזיר את אינדקס Pinecone"""
     pc = Pinecone(api_key=os.environ.get("PINECONE_API_KEY"))
-    return pc.Index(host=os.environ.get("PINECONE_INDEX_HOST"))
+    
+    # חילוץ שם האינדקס מה-URL או משתמש ישירות בשם האינדקס
+    index_host = os.environ.get("PINECONE_INDEX_HOST", "")
+    if index_host:
+        # חילוץ שם האינדקס מה-URL: https://index-name-xxx.svc.xxx.pinecone.io
+        # או אם נתנו רק את השם, נשתמש בו ישירות
+        if index_host.startswith("http"):
+            # חילוץ משם האינדקס מה-URL
+            index_name = index_host.split("://")[1].split(".")[0]
+        else:
+            # אם זה כבר שם האינדקס
+            index_name = index_host
+    else:
+        # נסה מהקונפיגורציה
+        index_name = CONFIG.get("index_name", "ted-talks-rag")
+    
+    return pc.Index(index_name)
 
 # --- מודלים ---
 EMBEDDING_MODEL = "RPRTHPB-text-embedding-3-small"

@@ -1,5 +1,0 @@
-flask
-openai
-pinecone-client
-python-dotenv
-pandas

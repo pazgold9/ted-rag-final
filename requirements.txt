@@ -1,5 +1,5 @@
 flask
 openai
-pinecone-client
+pinecone
 python-dotenv
 pandas

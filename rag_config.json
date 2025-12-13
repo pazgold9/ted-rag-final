@@ -1,0 +1,9 @@
+{
+  "chunk_size": 512,
+  "overlap_ratio": 0.15,
+  "top_k": 8,
+  "index_name": "ted-talks-rag",
+  "embedding_model": "RPRTHPB-text-embedding-3-small",
+  "chat_model": "RPRTHPB-gpt-5-mini",
+  "total_chunks": 21761
+}

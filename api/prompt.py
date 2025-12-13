@@ -51,7 +51,8 @@ class handler(BaseHTTPRequestHandler):
                 score = match['score']
                 
                 # בניית הטקסט למודל
-                chunk_text = meta.get('text', '')
+                # נסה chunk_text (כמו שנשמר ב-notebook) ואם לא, נסה text
+                chunk_text = meta.get('chunk_text', meta.get('text', ''))
                 title = meta.get('title', 'Unknown')
                 talk_id = meta.get('talk_id', 'Unknown')
                 

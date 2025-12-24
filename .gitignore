@@ -28,4 +28,5 @@ ENV/
 .DS_Store
 .env
 .env.local
+rag_model_script.ipynb
 
